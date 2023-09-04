@@ -46,4 +46,21 @@ public class ProcessadorBoletoTest {
 
     }
 
+    @DisplayName("Testa o não pagamento da fatura")
+    @Test
+    public void testNaoPagamentoFatura() {
+
+        ProcessadorBoleto processador = new ProcessadorBoleto();
+
+        Fatura fatura = new Fatura(new Date(), 2000.00, "Fulano");
+        List<Boleto> listaBoletos = Arrays.asList(
+            new Boleto(1, new Date(), 500.00),
+            new Boleto(2, new Date(), 400.00)
+        );
+
+        List<Pagamento> listaPagamentos = processador.processar(listaBoletos, fatura);
+        Assertions.assertFalse(fatura.getStatusPaga());
+
+    }
+
 }
