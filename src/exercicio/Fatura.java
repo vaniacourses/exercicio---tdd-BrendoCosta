@@ -17,9 +17,21 @@ public class Fatura {
 
     }
 
+    public double getValorTotal() {
+
+        return this.valorTotal;
+
+    }
+
     public boolean getStatusPaga() {
 
         return this.statusPaga;
+
+    }
+
+    public void setStatusPaga(boolean statusPaga) {
+
+        this.statusPaga = statusPaga;
 
     }
 

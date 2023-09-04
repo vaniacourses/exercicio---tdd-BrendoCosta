@@ -12,8 +12,14 @@ public class ProcessadorBoleto {
 
         for (Boleto boleto : listaBoletos) {
 
-            listaPagamentos.add(new Pagamento(0, new Date(), TipoPagamento.BOLETO));
+            listaPagamentos.add(new Pagamento(boleto.getValorPago(), new Date(), TipoPagamento.BOLETO));
             
+        }
+
+        if (listaBoletos.stream().map(b -> b.getValorPago()).mapToDouble(Double::doubleValue).sum() >= fatura.getValorTotal()) {
+
+            fatura.setStatusPaga(true);
+
         }
 
         return listaPagamentos;
